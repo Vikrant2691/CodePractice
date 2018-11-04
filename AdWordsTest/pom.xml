@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.niyogin.googleapi.test</groupId>
+	<artifactId>AdWordsTest</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>
+										com.test.adwords.DownloadCriteriaReportWithAwql
+									</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.google.api-ads/ads-lib -->
+		<dependency>
+			<groupId>com.google.api-ads</groupId>
+			<artifactId>ads-lib</artifactId>
+			<version>3.13.0</version>
+			
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		
+				<dependency>
+			<groupId>com.google.api-ads</groupId>
+			<artifactId>adwords-axis</artifactId>
+			<version>3.13.0</version>
+
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-shaded-client -->
+<dependency>
+    <groupId>org.apache.hbase</groupId>
+    <artifactId>hbase-shaded-client</artifactId>
+    <version>2.0.0</version>
+</dependency>
+
+		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<version>1.8</version>
+			<scope>system</scope>
+			<systemPath>C:\Program Files\Java\jdk1.8.0_151\lib\tools.jar</systemPath>
+		</dependency>
+	</dependencies>
+</project>

@@ -15,7 +15,7 @@ object SparkTest {
       .appName("Spark SQL basic example")
       .getOrCreate()
       
-    val df= spark.read.option("header", true).csv("file:///D:/work/workspace/SparkTest/test.csv")
+    val df= spark.read.option("header", true).csv("hdfs://192.168.111.128:8020/user/data/bunchofwords.txt")
     df.show()
     
     }
