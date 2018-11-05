@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.smartpost</groupId>
+	<artifactId>hadoop-etl</artifactId>
+	<version>1.0.0</version>
+
+	<name>hadoop-etl</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.7</jdk.version>
+	</properties>
+
+	<build>
+		<finalName>${artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>/src/main/resources/HiveLoadFromHdfsScripts</directory>
+				<excludes>
+					<exclude>**/*.hql</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<fork>true</fork>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>			
+				</configuration>
+			</plugin>
+ 	 		<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19</version>
+				<configuration>
+					<argLine>-XX:PermSize=196m</argLine>
+				</configuration>
+	        </plugin>
+			<plugin>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sourceDir>src/main/scala</sourceDir>
+					<jvmArgs>
+						<jvmArg>-Xms64m</jvmArg>
+						<jvmArg>-Xmx1024m</jvmArg>
+					</jvmArgs>					 
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- jackson-databind must be above any other dependencies with older versions of jackson-databind, -->
+		<!-- otherwise a class loader/dependency issue will occur for testing -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.4.4</version>
+			<scope>test</scope>
+		</dependency>
+	
+		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/tools.jar</systemPath>
+			<version>${jdk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.14</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.14</version>
+		</dependency>
+		
+				
+		<dependency>
+			<groupId>org.apache.pig</groupId>
+			<artifactId>pig</artifactId>
+			<version>0.15.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<version>2.7.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-core</artifactId>
+			<version>2.7.2</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_2.10</artifactId>
+			<version>1.6.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-hive_2.10</artifactId>
+			<version>1.6.2</version>
+			<scope>provided</scope>
+		</dependency>	
+		
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-exec</artifactId>
+			<version>2.0.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>pentaho-aggdesigner-algorithm</artifactId>
+					<groupId>org.pentaho</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>provided</scope>
+		</dependency>	
+		
+		<dependency>                                                      
+	        <groupId>org.apache.spark</groupId>                       
+	        <artifactId>spark-core_2.10</artifactId>                  
+	        <version>1.6.2</version>                       
+	        <scope>provided</scope>                                   
+	    </dependency>                                                     
+	    <dependency>                                                      
+	        <groupId>org.apache.spark</groupId>                       
+	        <artifactId>spark-sql_2.10</artifactId>                   
+	        <version>1.6.2</version>                       
+	        <scope>provided</scope>                                   
+	    </dependency>                                                     
+	    <dependency>                                                      
+	        <groupId>org.apache.spark</groupId>                       
+	        <artifactId>spark-hive_2.10</artifactId>                  
+	        <version>1.6.2</version>                       
+	        <scope>provided</scope>                                   
+	    </dependency> 
+		
+		<dependency>                                                      
+		    <groupId>org.apache.hive</groupId>                       
+		    <artifactId>hive-jdbc</artifactId>                  
+		    <version>1.2.1</version>                       
+		    <scope>provided</scope>                                   
+		</dependency>
+		
+		<dependency>
+			<groupId>com.databricks</groupId>
+			<artifactId>spark-csv_2.10</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>			
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>scala-tools.org</id>
+			<name>Scala-tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases</url>
+		</pluginRepository>
+	</pluginRepositories>
+</project>

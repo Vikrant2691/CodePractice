@@ -1,0 +1,10 @@
+INSERT INTO hdp_smp.system_parameters VALUES('CUST_SORT_PERCENT_START_DAYS_AGO', '56', 'The numbers of days ago to grab data for the Customer Sort Percentage from now as the start date');
+INSERT INTO hdp_smp.system_parameters VALUES('CUST_SORT_PERCENT_END_DAYS_AGO', '28', 'The numbers of days ago to grab data for the Customer Sort Percentage from now as the end date');
+INSERT INTO hdp_smp.system_parameters VALUES('EPDI_ALERTS_START_DAYS_AGO', '30', 'The numbers of days ago to grab data for the EPDI Alerts from now as the start date');
+INSERT INTO hdp_smp.system_parameters VALUES('EPDI_ALERTS_END_DAYS_AGO', '0', 'The numbers of days ago to grab data for the EPDI Alerts from now as the end date');
+INSERT INTO hdp_smp.system_parameters VALUES('FIRST_HUB_TOUCH_START_DAYS_AGO', '60', 'The numbers of days ago to grab data for the First Hub Touch from now as the start date');
+INSERT INTO hdp_smp.system_parameters VALUES('FIRST_HUB_TOUCH_END_DAYS_AGO', '0', 'The numbers of days ago to grab data for the First Hub Touch from now as the end date');
+INSERT INTO hdp_smp.system_parameters VALUES('AGING_START_DAYS_AGO', '21', 'The numbers of days ago to grab data for the Aging from now as the start date');
+INSERT INTO hdp_smp.system_parameters VALUES('AGING_END_DAYS_AGO', '0', 'The numbers of days ago to grab data for the Aging from now as the end date');
+INSERT INTO hdp_smp.system_parameters VALUES('AGING_END_PARTITION_DAYS_AGO', '0', 'The file_create_date partition to go back an additional number of days based on the agining end days ago - file_create_date = Now - AGING_END_DAYS_AGO - AGING_END_PARTITION_DAYS_AGO');
+INSERT INTO hdp_smp.system_parameters VALUES('AGING_START_PARTITION_DAYS_AGO', '1', 'The file_create_date partition to go back an additional number of days based on the agining end days ago - file_create_date = Now - AGING_START_DAYS_AGO - AGING_START_PARTITION_DAYS_AGO');

@@ -1,0 +1,22 @@
+CREATE TABLE hdp_smp.filtered_epdi_notifications_flagged
+(
+	account_number				STRING,
+	hub_id						STRING,
+	day_of_week					STRING,
+	event_date					DATE,
+	median_wait_time			BIGINT,
+	max_wait_time				BIGINT,
+	total_records_nbr			BIGINT COMMENT 'The total counts that were alerted on the account, hub, and date',
+	expected_scan_dt			DATE,
+	days_past_expected_scan_dt	INT,
+	percentile_50				BIGINT,
+	percentile_98				BIGINT,
+	percentile_hist_count		BIGINT COMMENT 'The count of packages that were used to create the percentiles',
+	sort_percentage				INT,
+	customer_nm					STRING,
+	global_entity_id			STRING,
+	global_entity_nm			STRING,
+	insert_timestamp			TIMESTAMP
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' 
+STORED as ORC;

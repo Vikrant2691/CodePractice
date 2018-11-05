@@ -1,0 +1,37 @@
+CREATE EXTERNAL TABLE hdp_smp.fxg_tracking_orc
+(
+upn                 	BIGINT, 
+pstl_barcd_nbr      	STRING,  
+dest_pstl_cd        	STRING, 
+country_cd          	STRING, 
+weight_src_cd       	STRING,
+pkg_weight_lbs      	double,
+dim_src_cd          	STRING, 
+pkg_length_inch     	double, 
+pkg_width_inch      	double, 
+pkg_height_inch     	double,
+ftm_event_cd        	STRING,
+ftm_event_datetime_utc  TIMESTAMP,
+ftm_event_tz            STRING,
+city_nm             	STRING,
+state               	STRING,
+event_type_code     	STRING,
+product_type_cd     	STRING,
+edtw_start_datetime_utc TIMESTAMP, 
+edtw_start_tz           STRING,
+edtw_end_datetime_utc   TIMESTAMP, 
+edtw_end_tz             STRING,
+edtw_conf_score_nbr 	double, 
+edtw_reason_cd      	STRING, 
+edtw_src_sys_nbr    	STRING,
+tendered_dt         	TIMESTAMP, 
+pres_cd             	STRING,
+facility_type			STRING,
+facility_id				STRING,
+facility_id_value		STRING,
+facility_company		STRING,
+filename				STRING,
+inserttimestamp		TIMESTAMP)
+PARTITIONED BY (file_create_date STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' 
+STORED as ORC;
