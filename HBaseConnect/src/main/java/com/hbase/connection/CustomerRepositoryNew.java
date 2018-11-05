@@ -17,8 +17,10 @@ public class CustomerRepositoryNew {
 
 		Configuration config = HBaseConfiguration.create();
 		
-		config.set("hbase.rootdir", "hdfs://192.168.111.128:8020/hbase");
-		config.set("hbase.zookeeper.quorum", "192.168.111.128");
+		config.setInt("timeout", 120000);
+		config.set("hbase.rootdir", "hdfs://centosbase:8020/hbase");
+		config.set("hbase.zookeeper.quorum", "centosbase");
+		config.set("hbase.master", "centosbase:60000");
 		config.set("hbase.zookeeper.property.clientPort", "2181");
 
 		Connection connection = ConnectionFactory.createConnection(config);
