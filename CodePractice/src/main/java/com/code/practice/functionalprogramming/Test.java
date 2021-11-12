@@ -1,5 +1,8 @@
 package com.code.practice.functionalprogramming;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Test {
     String s2 = "Text2";
 
@@ -8,7 +11,6 @@ public class Test {
         s2 = "Text1";
         s2 = "Text3";
         printStringImpl printString = new printStringImpl();
-
 
         printString.s = 2;
         printString.s = 3;
